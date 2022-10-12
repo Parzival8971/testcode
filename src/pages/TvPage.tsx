@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TvPage = () => {
+const TvPage: React.FC = () => {
   return <div>TvPage</div>;
 };
 

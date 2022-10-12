@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TvDetail = () => {
+const TvDetail: React.FC = () => {
   return <div>TvDetail</div>;
 };
 
