@@ -4,13 +4,20 @@ import styled from '@emotion/styled';
 import useLatestMovie from './useLatestMovie';
 import Card from '../../../components/Card';
 
-const Base = styled.div``;
+const Base = styled.div`
+  margin-bottom: 42px;
+`;
 
-const Title = styled.h4``;
+const Title = styled.h4`
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 30px;
+  padding: 12px 0 14px;
+`;
 
 const LatestMovieSection: React.FC = () => {
   const { data, isLoading } = useLatestMovie();
-  console.log(data);
+  console.log('최근', data);
 
   const getYear = (date: string) => date.split('-')[0];
 

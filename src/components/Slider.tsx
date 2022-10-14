@@ -39,7 +39,7 @@ const DEFAULT_SETTINGS: Settings = {
   dots: false,
   arrows: true,
   infinite: true,
-  speed: 500,
+  speed: 800,
   slidesToShow: 5,
   slidesToScroll: 5,
   swipe: true,
