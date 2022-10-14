@@ -38,19 +38,19 @@ const ArrowButton = styled.button<{ pos?: 'left' | 'right' }>`
 const DEFAULT_SETTINGS: Settings = {
   dots: false,
   arrows: true,
-  infinite: false,
+  infinite: true,
   speed: 500,
   slidesToShow: 5,
   slidesToScroll: 5,
   swipe: true,
   draggable: true,
   prevArrow: (
-    <ArrowButton>
+    <ArrowButton pos='left'>
       <MdArrowBackIos />
     </ArrowButton>
   ),
   nextArrow: (
-    <ArrowButton>
+    <ArrowButton pos='right'>
       <MdArrowForwardIos />
     </ArrowButton>
   ),
@@ -58,10 +58,11 @@ const DEFAULT_SETTINGS: Settings = {
 
 interface Props {
   settings?: Settings;
+  children: React.ReactNode;
 }
 
-const Slider: React.FC<Props> = ({ settings = DEFAULT_SETTINGS, children }) => {
-  return <ReactSlick {...settings}>{children}</ReactSlick>;
-};
+const Slider: React.FC<Props> = ({ settings = DEFAULT_SETTINGS, children }) => (
+  <ReactSlick {...settings}>{children}</ReactSlick>
+);
 
 export default Slider;

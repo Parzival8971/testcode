@@ -1,15 +1,26 @@
 import React from 'react';
-import Slider from 'react-slick';
+import styled from '@emotion/styled';
+
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import LatestMovieSection from '../features/movie/latest';
+import NowPlayingSection from '../features/movie/nowPlaying';
+
+const Main = styled.main`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
 
 const MainPage: React.FC = () => {
   return (
-    <div>
+    <>
       <Header />
-      <Slider />
+      <Main>
+        <LatestMovieSection />
+        <NowPlayingSection />
+      </Main>
       <Footer />
-    </div>
+    </>
   );
 };
 
