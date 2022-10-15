@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { AiOutlineSearch } from 'react-icons/ai';
+
+import useMovieSearch from '../features/movie/useMovieSearch';
 
 const Base = styled.header`
   position: fixed;
@@ -26,7 +28,6 @@ const MenuList = styled.ul`
   padding: 0;
   margin: 0;
   display: flex;
-  overflow: hidden;
 `;
 
 const Menu = styled.li`
@@ -128,48 +129,104 @@ const SignUp = styled.button`
   margin: 15px 0;
 `;
 
+const SearchResultWrapper = styled.div`
+  position: absolute;
+  top: 60px;
+  left: 0;
+  z-index: 9999999;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  max-height: 480px;
+  overflow-y: scroll;
+`;
+
+const SearchResultListItem = styled.li`
+  padding: 4px 6px;
+  box-sizing: border-box;
+  color: #222;
+  font-size: 16px;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  &:hover {
+    background: #eee;
+  }
+`;
+
+const SearchResultList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
 const Header: React.FC = () => {
-  const handleKeyword = () => {};
+  const [searchKeyword, setSearchKeyword] = useState<string>('');
+
+  const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setSearchKeyword(e.target.value);
+  };
+
+  const { data: searchResult } = useMovieSearch(searchKeyword);
+
   return (
     <Base>
       <Navigation>
-        <MenuList>
-          <Menu>
-            <Link href='/'>
-              <TextLogo>
-                <span className='primary'>WATCHOUT</span>
-                <span>PEDIA</span>
-              </TextLogo>
-            </Link>
-          </Menu>
-          <Menu>
-            <Link href='/'>
-              <MenuButton>영화</MenuButton>
-            </Link>
-            <Link href='/tv'>
-              <MenuButton>TV 프로그램</MenuButton>
-            </Link>
-          </Menu>
-          <SearchMenu>
-            <SearchContainer>
-              <SearchForm>
-                <SearchLabel>
-                  <AiOutlineSearch />
-                  <SearchInput
-                    placeholder='콘텐츠, 인물, 컬렉션, 유저를 검색해보세요.'
-                    onChange={handleKeyword}
-                  />
-                </SearchLabel>
-              </SearchForm>
-            </SearchContainer>
-          </SearchMenu>
-          <Menu>
-            <SignIn>로그인</SignIn>
-          </Menu>
-          <Menu>
-            <SignUp>회원가입</SignUp>
-          </Menu>
-        </MenuList>
+        <MenuListWrapper>
+          <MenuList>
+            <Menu>
+              <Link href='/'>
+                <TextLogo>
+                  <span className='primary'>WATCHOUT</span>
+                  <span>PEDIA</span>
+                </TextLogo>
+              </Link>
+            </Menu>
+            <Menu>
+              <Link href='/'>
+                <MenuButton>영화</MenuButton>
+              </Link>
+              <Link href='/tv'>
+                <MenuButton>TV 프로그램</MenuButton>
+              </Link>
+            </Menu>
+            <SearchMenu>
+              <SearchContainer>
+                <SearchFormWrapper>
+                  <SearchForm>
+                    <SearchLabel>
+                      <AiOutlineSearch />
+                      <SearchInput
+                        placeholder='콘텐츠, 인물, 컬렉션, 유저를 검색해보세요.'
+                        onChange={handleKeyword}
+                      />
+                    </SearchLabel>
+                  </SearchForm>
+                </SearchFormWrapper>
+              </SearchContainer>
+              <SearchResultWrapper>
+                <SearchResultList>
+                  {searchResult?.data.results.map((item) => (
+                    <Link key={item.id} href={`/movie/${item.id}`}>
+                      <SearchResultListItem>{item.title}</SearchResultListItem>
+                    </Link>
+                  ))}
+                </SearchResultList>
+              </SearchResultWrapper>
+            </SearchMenu>
+            <Menu>
+              <SignIn>로그인</SignIn>
+            </Menu>
+            <Menu>
+              <SignUp>회원가입</SignUp>
+            </Menu>
+          </MenuList>
+        </MenuListWrapper>
       </Navigation>
     </Base>
   );

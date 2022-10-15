@@ -16,8 +16,7 @@ const Main = styled.main`
 `;
 
 const Container = styled.div`
-  margin-top: 62px;
-  padding: 24px 0;
+  padding: 48px 0;
 `;
 
 const MainPage: React.FC = () => {

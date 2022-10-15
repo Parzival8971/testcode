@@ -18,7 +18,6 @@ const Title = styled.h4`
 
 const NowPlayingSection: React.FC = () => {
   const { data, isLoading } = useNowPlayingMovie();
-  console.log('나우', data);
 
   const getYear = (date: string) => date.split('-')[0];
 

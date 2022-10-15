@@ -18,7 +18,6 @@ const Title = styled.h4`
 
 const TopRaterSection: React.FC = () => {
   const { data, isLoading } = useTopRateMovie();
-  console.log('탑레이팅', data);
 
   const getYear = (date: string) => date.split('-')[0];
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import useLatestMovie from './useLatestMovie';
+import useLatestTv from './useLatestTv';
 import Card from '../../../components/Card';
 
 const Base = styled.div`
@@ -15,8 +15,9 @@ const Title = styled.h4`
   padding: 12px 0 14px;
 `;
 
-const LatestMovieSection: React.FC = () => {
-  const { data, isLoading } = useLatestMovie();
+const LatestTvSection: React.FC = () => {
+  const { data, isLoading } = useLatestTv();
+  console.log('최근TV', data);
 
   const getYear = (date: string) => date.split('-')[0];
 
@@ -27,15 +28,16 @@ const LatestMovieSection: React.FC = () => {
         <div>Loading...</div>
       ) : (
         <Card
-          linkUrl={`/moive/${data.data.id}`}
-          title={data.data.title}
+          key={data.data.id}
+          linkUrl={`/tv/${data.data.id}`}
+          title={data.data.name}
           posterPath={`${process.env.REACT_APP_IMAGE_PREFIX}/${data.data.poster_path}`}
           voteAverage={data.data.vote_average}
-          year={getYear(data.data.release_date)}
+          year={getYear(data.data.first_air_date)}
         />
       )}
     </Base>
   );
 };
 
-export default LatestMovieSection;
+export default LatestTvSection;

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import Slider from '../../../components/Slider';
-import usePopularMovie from './usePopularMovie';
+import usePopularTv from './useTopRateTv';
 import Card from '../../../components/Card';
 
 const Base = styled.div`
@@ -16,8 +16,9 @@ const Title = styled.h4`
   padding: 12px 0 14px;
 `;
 
-const PopularSection: React.FC = () => {
-  const { data, isLoading } = usePopularMovie();
+const TopRateTvSection: React.FC = () => {
+  const { data, isLoading } = usePopularTv();
+  console.log('탑레이트', data);
 
   const getYear = (date: string) => date.split('-')[0];
 
@@ -28,14 +29,16 @@ const PopularSection: React.FC = () => {
         <div>Loading...</div>
       ) : (
         <Slider>
-          {data.data.results.map((movie) => (
+          {data.data.results.map((tv) => (
             <Card
-              key={movie.id}
-              linkUrl={`/moive/${movie.id}`}
-              title={movie.title}
-              posterPath={`${process.env.REACT_APP_IMAGE_PREFIX}/${movie.poster_path}`}
-              voteAverage={movie.vote_average}
-              year={getYear(movie.release_date)}
+              key={tv.id}
+              linkUrl={`/tv/${tv.id}`}
+              title={tv.name}
+              posterPath={`${process.env.REACT_APP_IMAGE_PREFIX}/${
+                tv.poster_path || tv.backdrop_path
+              }`}
+              voteAverage={tv.vote_average}
+              year={getYear(tv.first_air_date)}
             />
           ))}
         </Slider>
@@ -44,4 +47,4 @@ const PopularSection: React.FC = () => {
   );
 };
 
-export default PopularSection;
+export default TopRateTvSection;

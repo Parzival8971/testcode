@@ -9,7 +9,7 @@ const ArrowButton = styled.button<{ pos?: 'left' | 'right' }>`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   z-index: 1;
-  top: 50%;
+  top: 40%;
   background-color: #fff;
   ${({ pos }) =>
     pos === 'left'
