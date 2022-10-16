@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-import LatestTvSection from '../features/tv/latest';
+// import LatestTvSection from '../features/tv/latest';
 import AiringTodayTvSection from '../features/tv/airingToday';
 import OnTheAirTvSection from '../features/tv/onTheAir';
 import PopularTvSection from '../features/tv/popular';
@@ -25,7 +25,7 @@ const TvPage: React.FC = () => {
       <Header />
       <Main>
         <Container>
-          <LatestTvSection />
+          {/* <LatestTvSection /> */}
           <AiringTodayTvSection />
           <OnTheAirTvSection />
           <PopularTvSection />

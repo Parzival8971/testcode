@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-import LatestMovieSection from '../features/movie/latest';
+// import LatestMovieSection from '../features/movie/latest';
 import NowPlayingSection from '../features/movie/nowPlaying';
 import PopularSection from '../features/movie/popular';
 import TopRaterSection from '../features/movie/topRate';
@@ -25,7 +25,7 @@ const MainPage: React.FC = () => {
       <Header />
       <Main>
         <Container>
-          <LatestMovieSection />
+          {/* <LatestMovieSection /> */}
           <NowPlayingSection />
           <PopularSection />
           <TopRaterSection />

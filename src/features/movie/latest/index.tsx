@@ -27,7 +27,7 @@ const LatestMovieSection: React.FC = () => {
         <div>Loading...</div>
       ) : (
         <Card
-          linkUrl={`/moive/${data.data.id}`}
+          linkUrl={`/movie/${data.data.id}`}
           title={data.data.title}
           posterPath={`${process.env.REACT_APP_IMAGE_PREFIX}/${data.data.poster_path}`}
           voteAverage={data.data.vote_average}

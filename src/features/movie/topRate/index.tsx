@@ -31,7 +31,7 @@ const TopRaterSection: React.FC = () => {
           {data.data.results.map((movie) => (
             <Card
               key={movie.id}
-              linkUrl={`/moive/${movie.id}`}
+              linkUrl={`/movie/${movie.id}`}
               title={movie.title}
               posterPath={`${process.env.REACT_APP_IMAGE_PREFIX}/${movie.poster_path}`}
               voteAverage={movie.vote_average}
